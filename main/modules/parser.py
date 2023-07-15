@@ -15,7 +15,6 @@ def trim_link(vlink: str):
 def parse():
     a = feedparser.parse("https://nyaa.si/?page=rss")
     b = a["entries"]
-    b = b[0:5]
     data = []    
 
     for i in b:
