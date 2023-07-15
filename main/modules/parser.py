@@ -8,36 +8,22 @@ import feedparser
 from main import queue
 from main.inline import button1
 
-def trim_title(title: str):
-    title = title.rsplit(' ', 1)[0]
-    title = title.replace("[Erai-raws] ", "")
-    title = title.replace("Dr. Stone - New World", "Dr Stone New World")
-    title = title.replace("Opus.COLORs", "Opus COLORs")
-    title = title.replace("Ousama Ranking - Yuuki no Takarabako", "Ousama Ranking Yuuki no Takarabako")
-    title = title.replace(" Isekai wa Smartphone to Tomo ni. 2", " Isekai wa Smartphone to Tomo ni 2")
-    title = title.replace("Ryza no Atelier - Tokoyami no Joou to Himitsu no Kakurega", "Ryza no Atelier Tokoyami no Joou to Himitsu no Kakurega")
-    title = title.replace("Kidou Senshi Gundam - Suisei no Majo", "Kidou Senshi Gundam Suisei no Majo")
-    title = title.replace("Birdie Wing - Golf Girls Story Season 2", "Birdie Wing Golf Girls Story Season 2")
-    ext = ".mkv"
-    title = title + ext
-    return title
-
-def multi_sub(title: str):
-    subtitle = title.split()[-1] 
-    return subtitle
-
 def parse():
-    a = feedparser.parse("https://siftrss.com/f/oyebWJBqN8")
+    a = feedparser.parse("https://nyaa.si/?page=rss")
     b = a["entries"]
     b = b[0:2]
     data = []    
 
     for i in b:
         item = {}
-        item['title'] = trim_title(i['title'])
-        item['subtitle'] = multi_sub(i['title'])
+        item['title'] = (i['title'])
+        item['subtitle'] = (i['title'])
         item['size'] = i['nyaa_size']   
         item['link'] = "magnet:?xt=urn:btih:" + i['nyaa_infohash']
+        item['categoryid'] = i['nyaa_categoryid']
+        item['category'] = i['nyaa_category']
+        item['trust'] = i['nyaa_trusted']
+        item['remake'] = i['nyaa_remake']
         data.append(item)
     data.reverse()
     return data
