@@ -1,6 +1,4 @@
 import asyncio
-from main.modules.schedule import update_schedule
-from main.modules.usschedule import update_schedulex
 from main.modules.utils import status_text
 from main import status
 from main.modules.db import get_animesdb, get_uploads, save_animedb
