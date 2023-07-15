@@ -98,8 +98,6 @@ async def start_uploading(data):
         title = data["title"]
         link = data["link"]
         size = data["size"]
-        nyaasize = data["size"]
-        subtitle = data["subtitle"]
         vlink = data['vlink']
         dlink = data['dlink']
         trust = data['trust']
@@ -111,25 +109,11 @@ async def start_uploading(data):
             trust="#trusted"
         else:
             trust=""
-        xtext=f"**{title}**" + "\n" + "{size}" + " | " + f"[Download]({dlink})" + " | " + f"[View]({vlink})" + " | " + "{trust}" + "\n" + f"[#C{cid} {category}](clink)" + "\n" + "\n" + f"[🔗 Magnet](magnet)"
+        xtext = f"**{title}**" + "\n" + "{size}" + " | " + f"[Download]({dlink})" + " | " + f"[View]({vlink})" + " | " + "{trust}" + "\n" + f"[#C{cid} {category}](clink)" + "\n" + "\n" + f"[🔗 Magnet](magnet)"
         KAYO_ID = -1001900103251
         untext = await app.send_message(
                       chat_id=KAYO_ID,
                       text=xtext
                   ) 
-
-    except FloodWait as e:
-
-        flood_time = int(e.x) + 5
-
-        try:
-
-            await status.edit(await status_text(f"Floodwait... Sleeping For {flood_time} Seconds"),reply_markup=button1)
-
-        except:
-
-            pass
-
-        await asyncio.sleep(flood_time)
 
     return id
