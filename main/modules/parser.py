@@ -21,7 +21,6 @@ def parse():
     for i in b:
         item = {}
         item['title'] = (i['title'])
-        item['subtitle'] = (i['title'])
         item['dlink'] = (i['link'])
         item['vlink'] = trim_link(i['link'])
         item['size'] = i['nyaa_size']   
