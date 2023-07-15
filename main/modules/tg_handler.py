@@ -102,17 +102,18 @@ async def start_uploading(data):
         trust = data['trust']
         cid = data['categoryid']
         category = data['category']
-        magnet = "https://nyaasi.herokuapp.com/nyaamagnet/urn:btih:" + link
+        magnet = "https://nyaasi-to-magnet.up.railway.app/nyaamagnet/urn:btih:" + link
         clink = "https://nyss.si/?c=" + "cid"
         if trust=="Yes":
-            trust="#trusted"
+            trust=trust.replace("Yes", "#trusted")
         else:
-            trust=""
-        xtext = f"**{title}**" + "\n" + "{size}" + " | " + f"[Download]({dlink})" + " | " + f"[View]({vlink})" + " | " + "{trust}" + "\n" + f"[#C{cid} {category}](clink)" + "\n" + "\n" + f"[🔗 Magnet](magnet)"
+            trust=trust.replace("No", "")
+        xtext = f"**{title}**" + "\n" + "{size}" + " | " + f"[Download]({dlink})" + " | " + f"[View]({vlink})" + " | " + f"{trust}" + "\n" + f"[#c{cid} {category}]({clink})" + "\n" + "\n" + f"[🔗 Magnet]({magnet})"
         KAYO_ID = -1001900103251
         untext = await app.send_message(
                       chat_id=KAYO_ID,
-                      text=xtext
+                      text=xtext,
+                      disable_web_page_preview=True
                   ) 
     except:
         pass
