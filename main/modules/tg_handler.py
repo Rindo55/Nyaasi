@@ -116,7 +116,6 @@ async def start_uploading(data):
                       text=xtext
                   ) 
         except:
-
             pass
 
     return id
