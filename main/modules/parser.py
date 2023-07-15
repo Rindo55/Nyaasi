@@ -59,7 +59,10 @@ async def auto_parser():
         for i in data:
             if i["data"] not in queue:
                 queue.append(i["data"])    
-                print("Saved ", i["name"])   
+        try:
+            await status.edit(await status_text("Idle..."),reply_markup=button1)
+        except:
+            pass
 
     await asyncio.sleep(30)
 
