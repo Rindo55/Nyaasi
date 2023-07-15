@@ -20,24 +20,24 @@ async def add_user(user_id: int):
 
 async def get_animesdb(): 
     anime_list = []
-    async for name in animedb.find():
-        anime_list.append(name)
+    async for title in animedb.find():
+        anime_list.append(title)
     return anime_list
 
-async def save_animedb(name,data): 
-    data = await animedb.insert_one({"name": name, "data": data})
+async def save_animedb(title,data): 
+    data = await animedb.insert_one({"name": title, "data": data})
     return
   
-async def del_anime(name): 
-    data = await animedb.delete_one({"name": name})
+async def del_anime(title): 
+    data = await animedb.delete_one({"name": title})
     return
 
 async def get_uploads(): 
     anime_list = []
-    async for name in uploadsdb.find():
-        anime_list.append(name)
+    async for title in uploadsdb.find():
+        anime_list.append(title)
     return anime_list
 
-async def save_uploads(name): 
-    data = await uploadsdb.insert_one({"name": name})
+async def save_uploads(title): 
+    data = await uploadsdb.insert_one({"name": title})
     return
