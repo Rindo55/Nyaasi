@@ -58,38 +58,7 @@ async def auto_parser():
         data = await get_animesdb()
         for i in data:
             if i["data"] not in queue:
-                queue.append(i["data"]) 
-                print("Saved ", i["name"])  
-        try:
-            await status.edit(await status_text("Idle..."),reply_markup=button1)
-        except:
-            pass
-async def start_uploadingx(data):
+                queue.append(i["data"])    
+                print("Saved ", i["name"])   
 
-    try:
-
-        title = data["title"]
-        link = data["link"]
-        size = data["size"]
-        vlink = data['vlink']
-        dlink = data['dlink']
-        trust = data['trust']
-        cid = data['categoryid']
-        category = data['category']
-        magnet = "https://nyaasi.herokuapp.com/nyaamagnet/urn:btih:" + link
-        clink = "https://nyss.si/?c=" + "cid"
-        if trust=="Yes":
-            trust="#trusted"
-        else:
-            trust=""
-        xtext = f"**{title}**" + "\n" + "{size}" + " | " + f"[Download]({dlink})" + " | " + f"[View]({vlink})" + " | " + "{trust}" + "\n" + f"[#C{cid} {category}](clink)" + "\n" + "\n" + f"[🔗 Magnet](magnet)"
-        KAYO_ID = -1001900103251
-        untext = await app.send_message(
-                      chat_id=KAYO_ID,
-                      text=xtext
-                  ) 
-    except:
-        pass
     await asyncio.sleep(30)
-
-
