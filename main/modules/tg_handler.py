@@ -47,7 +47,7 @@ async def tg_handler():
 
                 i = queue.pop(0)
 
-                id, name, video = await start_uploading(i)
+                id = await start_uploading(i)
 
                 await del_anime(i["title"])
 
@@ -105,107 +105,18 @@ async def start_uploading(data):
         trust = data['trust']
         cid = data['categoryid']
         category = data['category']
+        magnet = "https://nyaasi.herokuapp.com/nyaamagnet/urn:btih:" + link
         clink = "https://nyss.si/?c=" + "cid"
         if trust=="Yes":
             trust="#trusted"
         else:
             trust=""
-        text=f"**{title}\n{size} | [Download]({dlink}) | [View]({vlink}) | {trust} \n  
-        KAYO_ID = -1001159872623
-        msg = await app.send_message(KAYO_ID,,caption=title)
-
-        print("Downloading --> ",name)
-        await asyncio.sleep(5)
-        await status.edit(await status_text(f"Downloading {name}"),reply_markup=button1)
-
-        file = await downloader(msg,link,size,title)
-
-        await msg.edit(f"Download Complete : {name}")
-        print("Encoding --> ",name)
-
-        await status.edit(await status_text(f"Encoding {name}"),reply_markup=button1)
-
-        duration = get_duration(file)
-        durationx = get_durationx(file)
-        filed = os.path.basename(file)
-        main = await app.send_photo(KAYO_ID,photo=img,caption=caption)
-        guessname = f"**{ghostname}**" + "\n" + f"__({tit})__" + "\n" + "━━━━━━━━━━━━━━━━━━━" + "\n" + "✓  `1080p x264 Web-DL`" + "\n" + f"✓  `{subtitle} ~ Subs`" + "\n" + "#Source #WebDL"
-        
-        thumbnail = await generate_thumbnail(id,file)
-
-        videox = await app.send_document(
-
-                DATABASE_ID,
-
-            document=file,
-            
-            caption=guessname,
-
-            file_name=filed,
-
-            force_document=True,
-                        
-            thumb=thumbnail
-
-            )   
-        os.rename(file, fpath)
-        sourcefileid = str(videox.message_id)
-        source_link = f"https://telegram.me/somayukibot?start=animxt_{str_to_b64(sourcefileid)}"
-        repl_markup=InlineKeyboardMarkup([[InlineKeyboardButton(
-                                                              "🐌TG FILE", url=source_link)]])
-        orgtext =  "**#Source_File**" + "\n" + f"**‣ File Name: `{filed}`**" + "\n" + "**‣ Video**: `1080p x264`" + "\n" + "**‣ Audio**: `Japanese`" + "\n" + f"**‣ Subtitle**: `{subtitle}`" + "\n" + f"**‣ File Size**: `{nyaasize}`" + "\n" + f"**‣ Duration**: {durationx}" + "\n" + f"**‣ Downloads**: [🔗Telegram File]({source_link})"
-        rep_id = int(main.message_id)
-        await asyncio.sleep(5)
-        untextx = await app.send_message(
-                      chat_id=KAYO_ID,
-                      text=orgtext,
-                      reply_to_message_id=rep_id
-                  )
-        await asyncio.sleep(3)
-        unitext = await untextx.edit(orgtext, reply_markup=repl_markup)
-        await asyncio.sleep(5)
-        sourcetext =  f"**#Encoded_File**" + "\n" + f"**‣ File Name**: `{razo}`" + "\n" + "**‣ Video**: `720p HEVC x265 10Bit`" + "\n" + "**‣ Audio**: `Japanese`" + "\n" + f"**‣ Subtitle**: `{subtitle}`"
+        xtext=f"**{title}**" + "\n" + "{size}" + " | " + f"[Download]({dlink})" + " | " + f"[View]({vlink})" + " | " + "{trust}" + "\n" + f"[#C{cid} {category}](clink)" + "\n" + "\n" + f"[🔗 Magnet](magnet)"
+        KAYO_ID = -1001900103251
         untext = await app.send_message(
                       chat_id=KAYO_ID,
-                      text=sourcetext,
-                      reply_to_message_id=rep_id
-                  )
-        await asyncio.sleep(2)
-        await app.send_sticker(KAYO_ID,"CAACAgUAAxkBAAEU_9FkRrLoli952oqIMVFPftW12xYLRwACGgADQ3PJEsT69_t2KrvBLwQ")
-        os.rename(fpath,"video.mkv")
-        await asyncio.sleep(5)
-        compressed = await compress_video(duration,untext,name,sourcetext)
-        
-        dingdong = await untext.edit(sourcetext)
-
-
-        if compressed == "None" or compressed == None:
-
-            print("Encoding Failed Uploading The Original File")
-
-            os.rename("video.mkv",fpath)
-
-        else:
-
-            os.rename("out.mkv",fpath)
-  
-        print("Uploading --> ",name)
-
-        await status.edit(await status_text(f"Uploading {name }"),reply_markup=button1)
-        video = await upload_video(msg,fpath,id,tit,name,size,sourcetext,untext,subtitle,nyaasize) 
-        try:
-
-            os.remove("video.mkv")
-
-            os.remove("out.mkv")
-
-            os.remove(file)
-
-            os.remove(fpath)
-
-        except:
-
-            pass     
+                      text=xtext
+                  ) 
 
     except FloodWait as e:
 
@@ -221,4 +132,4 @@ async def start_uploading(data):
 
         await asyncio.sleep(flood_time)
 
-    return id, name, video
+    return id
