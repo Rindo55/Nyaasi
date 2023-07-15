@@ -115,5 +115,8 @@ async def start_uploading(data):
                       chat_id=KAYO_ID,
                       text=xtext
                   ) 
+        except:
+
+            pass
 
     return id
