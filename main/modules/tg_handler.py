@@ -103,7 +103,7 @@ async def start_uploading(data):
         cid = data['categoryid']
         category = data['category']
         magnet = "https://nyaasi-to-magnet.up.railway.app/nyaamagnet/urn:btih:" + link
-        clink = "https://nyss.si/?c=" + "cid"
+        clink = "https://nyss.si/?c=" + cid
         if trust=="Yes":
             trust=trust.replace("Yes", "#trusted")
         else:
