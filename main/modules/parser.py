@@ -8,16 +8,22 @@ import feedparser
 from main import queue
 from main.inline import button1
 
+def trim_link(vlink: str):
+    vlink = vlink.replace("download", "view")
+    vlink = vlink.replace(".torrent", "")
+    return vlink
 def parse():
     a = feedparser.parse("https://nyaa.si/?page=rss")
     b = a["entries"]
-    b = b[0:2]
+    b = b[0:5]
     data = []    
 
     for i in b:
         item = {}
         item['title'] = (i['title'])
         item['subtitle'] = (i['title'])
+        item['dlink'] = (i['link'])
+        item['vlink'] = trim_link(i['link'])
         item['size'] = i['nyaa_size']   
         item['link'] = "magnet:?xt=urn:btih:" + i['nyaa_infohash']
         item['categoryid'] = i['nyaa_categoryid']
