@@ -25,7 +25,7 @@ def parse():
         item['dlink'] = (i['link'])
         item['vlink'] = trim_link(i['link'])
         item['size'] = i['nyaa_size']   
-        item['link'] = "magnet:?xt=urn:btih:" + i['nyaa_infohash']
+        item['link'] = i['nyaa_infohash']
         item['categoryid'] = i['nyaa_categoryid']
         item['category'] = i['nyaa_category']
         item['trust'] = i['nyaa_trusted']
