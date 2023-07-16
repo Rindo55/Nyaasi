@@ -119,7 +119,6 @@ async def start_uploading(data):
                       text=xtext,
                       disable_web_page_preview=True
                   ) 
-        print("Uploading --> ",name)
     except:
         pass
 
