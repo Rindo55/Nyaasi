@@ -11,7 +11,7 @@ def trim_link(vlink: str):
     vlink = vlink.replace(".torrent", "")
     return vlink
 def parse():
-    a = feedparser.parse("https://nyaa.si/?page=rss")
+    a = feedparser.parse("https://siftrss.com/f/1LNyVoo9RP")
     b = a["entries"]
     data = []    
 
@@ -61,4 +61,4 @@ async def auto_parser():
                 queue.append(i["data"])    
                 print("Saved ", i["name"])   
 
-    await asyncio.sleep(60)
+    await asyncio.sleep(30)
