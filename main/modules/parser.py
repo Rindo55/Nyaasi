@@ -32,7 +32,10 @@ def parse():
 
 async def auto_parser():
     while True:
-
+        try:
+            await status.edit(await status_text("Parsing Rss, Fetching Magnet Links..."),reply_markup=button1)
+        except:
+            pass
         rss = parse()
         data = await get_animesdb()
         uploaded = await get_uploads()
@@ -56,5 +59,8 @@ async def auto_parser():
             if i["data"] not in queue:
                 queue.append(i["data"])    
                 print("Saved ", i["name"])   
-
-    await asyncio.sleep(30)
+        try:
+            await status.edit(await status_text("Idle..."),reply_markup=button1)
+        except:
+            pass    
+        await asyncio.sleep(30)
