@@ -61,4 +61,4 @@ async def auto_parser():
                 queue.append(i["data"])    
                 print("Saved ", i["name"])   
 
-    await asyncio.sleep(30)
+    await asyncio.sleep(60)
