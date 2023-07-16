@@ -52,7 +52,7 @@ async def tg_handler():
 
                 await save_uploads(i["title"])
 
-                await asyncio.sleep(5)
+                await asyncio.sleep(30)
 
             else:                
 
@@ -102,18 +102,14 @@ async def start_uploading(data):
         trust = data['trust']
         cid = data['categoryid']
         category = data['category']
-        remake = data['nyaa_remake']
         magnet = "https://nyaasi-to-magnet.up.railway.app/nyaamagnet/urn:btih:" + link
-        clink = "https://nyss.si/?c=" + cid
-        if remake=="Yes":
-            remake=remake.replace("Yes", " | #remake")
-        elif trust=="Yes":
-            trust=trust.replace("Yes", " | #trusted")
+        clink = "https://nyss.si/?c=" + "cid"
+        if trust=="Yes":
+            trust=trust.replace("Yes", "#trusted")
         else:
-            remake=remake.replace("No", "")
             trust=trust.replace("No", "")
-        xtext = f"**{title}**" + "\n" + f"{size}" + " | " + f"[Download]({dlink})" + " | " + f"[View]({vlink})" + f"{remake}" + f"{trust}" + "\n" + f"[#c{cid} {category}]({clink})" + "\n" + "\n" + f"[🔗 Magnet]({magnet})"
-        KAYO_ID = -1001657593339
+        xtext = f"**{title}**" + "\n" + f"{size}" + " | " + f"[Download]({dlink})" + " | " + f"[View]({vlink})" + " | " + f"{trust}" + "\n" + f"[#c{cid} {category}]({clink})" + "\n" + "\n" + f"[🔗 Magnet]({magnet})"
+        KAYO_ID = -1001900103251
         untext = await app.send_message(
                       chat_id=KAYO_ID,
                       text=xtext,
