@@ -32,10 +32,6 @@ def parse():
 
 async def auto_parser():
     while True:
-        try:
-            await status.edit(await status_text("Parsing Rss, Fetching Magnet Links..."),reply_markup=button1)
-        except:
-            pass
 
         rss = parse()
         data = await get_animesdb()
