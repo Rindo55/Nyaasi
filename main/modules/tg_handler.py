@@ -120,6 +120,8 @@ async def start_uploading(data):
                       text=xtext,
                       disable_web_page_preview=True
                   ) 
+        print("Uploading --> ",name)
+        await status.edit(await status_text(f"Uploading {name }"),reply_markup=button1)
     except:
         pass
 
