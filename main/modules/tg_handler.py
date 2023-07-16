@@ -52,7 +52,7 @@ async def tg_handler():
 
                 await save_uploads(i["title"])
 
-                await asyncio.sleep(10)
+                await asyncio.sleep(5)
 
             else:                
 
@@ -120,7 +120,6 @@ async def start_uploading(data):
                       disable_web_page_preview=True
                   ) 
         print("Uploading --> ",name)
-        await status.edit(await status_text(f"Uploading {name }"),reply_markup=button1)
     except:
         pass
 
