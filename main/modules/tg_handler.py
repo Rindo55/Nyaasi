@@ -52,7 +52,7 @@ async def tg_handler():
 
                 await save_uploads(i["title"])
 
-                await asyncio.sleep(5)
+                await asyncio.sleep(10)
 
             else:                
 
